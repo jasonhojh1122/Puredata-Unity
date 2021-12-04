@@ -1,0 +1,36 @@
+#N canvas -8 -8 1920 1037 12;
+#X obj 100 2 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 100 54 i;
+#X obj 128 54 + 1;
+#X obj 156 54 % 16;
+#X floatatom 100 79 5 0 0 0 - - -;
+#X obj 100 103 hradio 15 1 0 16 empty empty empty 0 -8 0 10 -262144
+-1 -1 3;
+#X msg 195 54 0;
+#X obj 100 20 metro 200;
+#X floatatom 160 -5 5 0 0 0 - - -;
+#X obj 215 -5 s beat-\$1;
+#X obj 100 152 s tick-\$1;
+#X obj 100 -48 inlet;
+#X obj 160 -48 inlet;
+#X obj 210 -48 inlet;
+#X text 90 -72 toggle;
+#X text 152 -72 speed;
+#X text 208 -73 reset;
+#X connect 0 0 7 0;
+#X connect 1 0 2 0;
+#X connect 1 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 1;
+#X connect 4 0 5 0;
+#X connect 5 0 10 0;
+#X connect 6 0 4 0;
+#X connect 6 0 1 1;
+#X connect 7 0 1 0;
+#X connect 8 0 7 1;
+#X connect 8 0 9 0;
+#X connect 11 0 0 0;
+#X connect 12 0 8 0;
+#X connect 13 0 6 0;
+#X coords 0 -1 1 1 240 18 1 100 100;
