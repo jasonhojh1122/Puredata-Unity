@@ -1513,9 +1513,9 @@
     "m_Guid": {
         "m_GuidSerialized": "f6bb12fd-ff3a-417f-8a10-cb2a94e93fc0"
     },
-    "m_Name": "RandomNormalAmount",
+    "m_Name": "RandNormAmount",
     "m_DefaultReferenceName": "Vector1_29af403c02354399acdca8025e16c325",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_RandNormAmount",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -2934,7 +2934,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "778c4d62e9204a6ca5f97480dcb9344a",
     "m_Id": 0,
-    "m_DisplayName": "RandomPositionAmount",
+    "m_DisplayName": "RandPosAmount",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3118,7 +3118,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "7eb822e5483c47719ecf793fe15d248c",
     "m_Id": 0,
-    "m_DisplayName": "RandomNormalAmount",
+    "m_DisplayName": "RandNormAmount",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3233,9 +3233,9 @@
     "m_Guid": {
         "m_GuidSerialized": "562fae91-c636-4b4f-890d-7af8286710b2"
     },
-    "m_Name": "RandomPositionAmount",
+    "m_Name": "RandPosAmount",
     "m_DefaultReferenceName": "Vector1_8c57653b27b744319dde77c7287e9b09",
-    "m_OverrideReferenceName": "_Amount",
+    "m_OverrideReferenceName": "_RandPosAmount",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

@@ -7,8 +7,6 @@ namespace PDElement
 
         static string toggleBusPrefix = "U_SQT-";
         static string speedBusPrefix = "U_SQS-";
-
-        LibPdInstance pdPatch;
         string toggleBusName;
         string speedBusName;
 
@@ -16,11 +14,10 @@ namespace PDElement
 
         public float speed;
 
-        public Sequencer(int id, LibPdInstance pdPatch, float speed = 145)
+        public Sequencer(int id, float speed = 145)
         {
             this.id = id;
             this.speed = 145;
-            this.pdPatch = pdPatch;
             toggleBusName = toggleBusPrefix + id.ToString();
             speedBusName = speedBusPrefix + id.ToString();
             SetSpeed(this.speed);
@@ -29,15 +26,15 @@ namespace PDElement
         public void SetSpeed(float speed)
         {
             this.speed = speed;
-            pdPatch.SendFloat(speedBusName, speed);
+            PDPlayer.Instance.PdPatch.SendFloat(speedBusName, speed);
         }
 
         public void Toggle(bool turnOn)
         {
             if (turnOn)
-                pdPatch.SendFloat(toggleBusName, 1);
+                PDPlayer.Instance.PdPatch.SendFloat(toggleBusName, 1);
             else
-                pdPatch.SendFloat(toggleBusName, 0);
+                PDPlayer.Instance.PdPatch.SendFloat(toggleBusName, 0);
         }
 
     }

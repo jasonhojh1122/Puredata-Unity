@@ -2,33 +2,29 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-public class HumanAnimator : MonoBehaviour {
+public class HumanAnimator : MonoBehaviour
+{
 
-    [SerializeField] Human humanPrefab;
-    [SerializeField] int count;
-    [SerializeField] float xOffset;
-    [SerializeField] float yOffset;
-    [SerializeField] float zOffset;
+    [SerializeField] int ArmAnimCnt;
+    [SerializeField] int LegAnimCnt;
+    [SerializeField] List<Human> humen;
+    [SerializeField] float waitTime;
 
-    List<Human> humans;
-
-    private void Awake() {
-        humans = new List<Human>();
-        for (int i = 0; i < count; i++) {
-            var newHuman = GameObject.Instantiate<Human>(humanPrefab);
-            newHuman.transform.position = new Vector3(xOffset, yOffset, zOffset * i);
-            newHuman.transform.rotation = Quaternion.Euler(0, 90, 0);
-            humans.Add(newHuman);
-            newHuman = GameObject.Instantiate<Human>(humanPrefab);
-            newHuman.transform.position = new Vector3(-xOffset, yOffset, zOffset * i);
-            newHuman.transform.rotation = Quaternion.Euler(0, -90, 0);
-            humans.Add(newHuman);
-        }
+    private void Start()
+    {
+        StartCoroutine(RandomAnim());
     }
 
-    private void Update() {
-        foreach (Human human in humans) {
-            human.UpdateLight();
+    System.Collections.IEnumerator RandomAnim()
+    {
+        while (true)
+        {
+            foreach (Human human in humen)
+            {
+                human.RandomArmAnimation();
+                human.RandomLegAnimation();
+            }
+            yield return new WaitForSeconds(waitTime);
         }
     }
 

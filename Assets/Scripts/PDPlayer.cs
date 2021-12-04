@@ -1,44 +1,126 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading;
 
-public class PDPlayer : MonoBehaviour {
+public class PDPlayer : MonoBehaviour
+{
+    private static PDPlayer _instance;
+    public static PDPlayer Instance
+    {
+        get => _instance;
+    }
 
-    public LibPdInstance pdPatch;
-
-    PDElement.BaseDrum baseDrum;
-    PDElement.SnareDrum snareDrum;
-    PDElement.HitHat hitHat;
-    PDElement.Piano piano;
+    [SerializeField] LibPdInstance pdPatch;
+    [SerializeField] List<string> instruNames;
+    [SerializeField] List<Human> humen;
+    [SerializeField] SignalVisualizer signalVisualizer;
+    [SerializeField] LaserLight laserLight;
+    public static readonly float TickStep = 15;
+    Dictionary<string, Human> humanMap;
+    Dictionary<string, PDElement.Instument> instruMap;
     PDElement.Sequencer sequencer;
 
-    private void Awake() {
-        baseDrum = new PDElement.BaseDrum(1, pdPatch, 6);
-        snareDrum = new PDElement.SnareDrum(1, pdPatch, 6);
-        hitHat = new PDElement.HitHat(1, pdPatch, 6);
-        piano = new PDElement.Piano(1, pdPatch, 6);
-        sequencer = new PDElement.Sequencer(1, pdPatch, 145);
-        baseDrum.PlayPreset(1);
-        snareDrum.PlayPreset(1);
-        hitHat.PlayPreset(1);
-        piano.PlayPreset(1);
+    public LibPdInstance PdPatch
+    {
+        get => pdPatch;
     }
-
-    private void Start() {
-        sequencer.Toggle(true);
-    }
-
-    public void FloatReceive(string sender, float value) {
-        if (sender == "OSC") {
-            Debug.Log("1 " + value);
+    public float Speed
+    {
+        get => sequencer.speed;
+        set {
+            sequencer.SetSpeed(value);
         }
     }
-    public void FloatReceive2(string sender, float value) {
-        if (sender == "OSC2") {
-            Debug.Log("2 " + value);
+
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+        instruMap = new Dictionary<string, PDElement.Instument>();
+        humanMap = new Dictionary<string, Human>();
+
+        for (int i = 0; i < instruNames.Count; i++)
+        {
+            instruMap.Add(instruNames[i], new PDElement.Instument(instruNames[i]));
+            humanMap.Add(instruNames[i], humen[i]);
+            humen[i].instruName = instruNames[i];
+            pdPatch.Bind("UH_" + instruNames[i]);
+        }
+        sequencer = new PDElement.Sequencer(1, 145);
+
+        pdPatch.Bind("U_SnapShot");
+        pdPatch.Bind("U_Tick-1");
+    }
+
+    private void Start()
+    {
+        sequencer.Toggle(true);
+        pdPatch.SendBang("U_Sample");
+    }
+
+    private void Update() {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit)) {
+                Human human = hit.collider.gameObject.GetComponent<Human>();
+                if (human != null)
+                {
+                    human.RandomArmAnimation();
+                    human.RandomLegAnimation();
+                    instruMap[human.instruName].PlayRandomPreset();
+                }
+            }
+        }
+        else if (Input.GetMouseButtonDown(2))
+        {
+            RaycastHit hit;
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit)) {
+                Human human = hit.collider.gameObject.GetComponent<Human>();
+                if (human != null)
+                {
+                    human.RandomArmAnimation();
+                    human.RandomLegAnimation();
+                    instruMap[human.instruName].PlayNextPreset();
+                }
+            }
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            RaycastHit hit;
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit)) {
+                Human human = hit.collider.gameObject.GetComponent<Human>();
+                if (human != null)
+                {
+                    human.Stop();
+                    instruMap[human.instruName].Stop();
+                }
+            }
+        }
+    }
+
+    public void BangReceive(string sender)
+    {
+        var s = sender.Split('_');
+        if (humanMap.ContainsKey(s[1]))
+        {
+            humanMap[s[1]].Hitted();
+        }
+    }
+    public void FloatReceive(string sender, float value)
+    {
+        if (sender == "U_SnapShot")
+        {
+            signalVisualizer.Visualize(value);
+        }
+        else if (sender == "U_Tick-1")
+        {
+            laserLight.Randomize();
         }
     }
 

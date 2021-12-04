@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 381328955075291799}
   - component: {fileID: 381328955075291798}
   - component: {fileID: 381328955075291797}
+  - component: {fileID: 8399176250608743868}
   m_Layer: 0
   m_Name: HumanStand
   m_TagString: Untagged
@@ -537,7 +538,7 @@ Animator:
   m_GameObject: {fileID: 381328955075291796}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 969f8956123263840a58aad527a7d8fd, type: 3}
-  m_Controller: {fileID: 9100000, guid: a1f9d610b2bd7d64b897db8c32f96c84, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -559,11 +560,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LookAt: {fileID: 381328955518367309}
-  LeftArmTarget: {fileID: 381328955702647260}
-  RightArmTarget: {fileID: 381328956781134766}
-  LeftLegTarget: {fileID: 381328954903888327}
-  RightLegTarget: {fileID: 381328955529534168}
-  Lights: {fileID: 0}
+  armAnimator: {fileID: 1783776559007849686}
+  legAnimator: {fileID: 4104709255210379726}
+  smr: {fileID: 381328955433431387}
+  hitDur: 0.1
+  randPosAmount: 0.5
+  armAnimCnt: 8
+  legAnimCnt: 4
+  instruName: 
+--- !u!136 &8399176250608743868
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381328955075291796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 5
+  m_Direction: 1
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &381328955142549347
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,6 +778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 381328955236798548}
   - component: {fileID: 381328955236798549}
+  - component: {fileID: 4104709255210379726}
   m_Layer: 0
   m_Name: Legs
   m_TagString: Untagged
@@ -829,6 +848,25 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     m_Visible: 1
+--- !u!95 &4104709255210379726
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381328955236798555}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 969f8956123263840a58aad527a7d8fd, type: 3}
+  m_Controller: {fileID: 9100000, guid: 016f4302a34c78f40bd614ec431ee368, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &381328955267468073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,6 +3260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 381328956855606584}
   - component: {fileID: 381328956855606585}
+  - component: {fileID: 1783776559007849686}
   m_Layer: 0
   m_Name: Arms
   m_TagString: Untagged
@@ -3291,6 +3330,25 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     m_Visible: 1
+--- !u!95 &1783776559007849686
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381328956855606591}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 969f8956123263840a58aad527a7d8fd, type: 3}
+  m_Controller: {fileID: 9100000, guid: 812cff216ce07b3468a8311a81e8470f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &381328956856203532
 GameObject:
   m_ObjectHideFlags: 0

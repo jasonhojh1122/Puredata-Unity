@@ -2,17 +2,15 @@
 namespace PDElement {
 
     public class Instument {
-        protected LibPdInstance pdPatch;
-        protected string presetBusName;
-        protected int id;
         protected int presetCnt;
         protected int curPreset;
+        protected string name;
 
-        public Instument(int id, LibPdInstance pdPatch, int presetCnt = 6) {
-            this.id = id;
-            this.pdPatch = pdPatch;
+        public Instument(string name, int presetCnt = 6) {
+            this.name = name;
             this.presetCnt = presetCnt;
             curPreset = 0;
+            PlayCurPreset();
         }
 
         public void PlayNextPreset() {
@@ -37,7 +35,7 @@ namespace PDElement {
         }
 
         public void PlayCurPreset() {
-            pdPatch.SendFloat(presetBusName, curPreset);
+            PDPlayer.Instance.PdPatch.SendFloat("UP_" + name, curPreset);
         }
     }
 

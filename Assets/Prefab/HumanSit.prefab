@@ -803,6 +803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3259028939335483834}
   - component: {fileID: 3259028939335483835}
+  - component: {fileID: 3165166107073025470}
   m_Layer: 0
   m_Name: Arms
   m_TagString: Untagged
@@ -872,6 +873,25 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     m_Visible: 1
+--- !u!95 &3165166107073025470
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3259028939335483833}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 969f8956123263840a58aad527a7d8fd, type: 3}
+  m_Controller: {fileID: 9100000, guid: 812cff216ce07b3468a8311a81e8470f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3259028939357624365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,7 +2217,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5370213852271485056}
   - component: {fileID: 2046597818167851770}
-  - component: {fileID: 4741452198887979579}
+  - component: {fileID: 4418696855025185559}
+  - component: {fileID: 7182836437868772986}
   m_Layer: 0
   m_Name: HumanSit
   m_TagString: Untagged
@@ -2231,7 +2252,7 @@ Animator:
   m_GameObject: {fileID: 4741452198887979578}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 969f8956123263840a58aad527a7d8fd, type: 3}
-  m_Controller: {fileID: 9100000, guid: a1f9d610b2bd7d64b897db8c32f96c84, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2240,7 +2261,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4741452198887979579
+--- !u!114 &4418696855025185559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2249,14 +2270,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 4741452198887979578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66be4f535ca42c34aada8191e12272ed, type: 3}
+  m_Script: {fileID: 11500000, guid: b76eb4701b3931b4e9a117962ce78ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LookAt: {fileID: 3259028940161553937}
-  LeftArmTarget: {fileID: 3259028939370650729}
-  RightArmTarget: {fileID: 3259028939633432398}
-  LeftLegTarget: {fileID: 3259028940849941166}
-  RightLegTarget: {fileID: 3259028939015376402}
+  armAnimator: {fileID: 3165166107073025470}
+  legAnimator: {fileID: 0}
+  listenInstrument: 
+--- !u!136 &7182836437868772986
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4741452198887979578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 3.5, z: 0}
 --- !u!1 &4758454233812408673
 GameObject:
   m_ObjectHideFlags: 0
