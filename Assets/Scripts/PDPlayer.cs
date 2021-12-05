@@ -14,6 +14,7 @@ public class PDPlayer : MonoBehaviour
     [SerializeField] List<Human> humen;
     [SerializeField] SignalVisualizer signalVisualizer;
     [SerializeField] LaserLight laserLight;
+    [SerializeField] Background background;
     public static readonly float TickStep = 15;
     Dictionary<string, Human> humanMap;
     Dictionary<string, PDElement.Instument> instruMap;
@@ -58,7 +59,7 @@ public class PDPlayer : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(2))
         {
             RaycastHit hit;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -73,7 +74,7 @@ public class PDPlayer : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetMouseButtonDown(2))
+        else if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -121,6 +122,7 @@ public class PDPlayer : MonoBehaviour
         else if (sender == "U_Tick-1")
         {
             laserLight.Randomize();
+            background.ChangeBackground(value);
         }
     }
 
